@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.Locale;
 
@@ -39,12 +41,13 @@ public class ApplicationConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public InternalResourceViewResolver internalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/jsp/");
-        resolver.setSuffix(".jsp");
-        resolver.setViewClass(JstlView.class);
-        return resolver;
+    public ViewResolver getViewResolver() {
+        FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
+
+        viewResolver.setCache(true);
+        viewResolver.setPrefix("/ftl/");
+        viewResolver.setSuffix(".ftlh");
+        return viewResolver;
     }
 
     @Bean
