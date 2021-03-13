@@ -7,23 +7,22 @@ import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.Locale;
 
+
 @EnableWebMvc
 @Configuration
+@EnableAspectJAutoProxy
 public class ApplicationConfig implements WebMvcConfigurer {
 
     @Value("language")
@@ -40,6 +39,11 @@ public class ApplicationConfig implements WebMvcConfigurer {
                 .addResourceLocations("/resources/");
     }
 
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login.html");
+    }
+
+
     @Bean
     public ViewResolver getViewResolver() {
         FreeMarkerViewResolver viewResolver = new FreeMarkerViewResolver();
@@ -48,6 +52,13 @@ public class ApplicationConfig implements WebMvcConfigurer {
         viewResolver.setPrefix("/ftl/");
         viewResolver.setSuffix(".ftlh");
         return viewResolver;
+    }
+
+    @Bean
+    public FreeMarkerConfigurer getFreemarkerConfig() {
+        FreeMarkerConfigurer conf = new FreeMarkerConfigurer();
+        conf.setTemplateLoaderPath("classpath:/templates/");
+        return conf;
     }
 
     @Bean
