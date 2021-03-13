@@ -2,8 +2,10 @@ package com.wishes.demo.entity.users_relations;
 
 import com.wishes.demo.entity.AbstractEntity;
 import com.wishes.demo.entity.user.UserEntity;
+import com.wishes.demo.repository.converter.relation_status.RelationStatusAttributeConverter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users_relations")
@@ -18,24 +20,21 @@ public class UserRelationEntity extends AbstractEntity {
     @JoinColumn(name = "related_user_id_fk")
     private UserEntity relatedUser;
 
+    @Convert(converter = RelationStatusAttributeConverter.class)
     @Column(name = "status")
-    private RelationStatus status;
+    private RelationStatusEnum status;
 
     public UserRelationEntity() {
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
 
-    public UserRelationEntity(Long id, UserEntity primaryUser, UserEntity relatedUser, RelationStatus status) {
+    public UserRelationEntity(Long id, UserEntity primaryUser, UserEntity relatedUser, RelationStatusEnum status) {
         super(id);
         this.primaryUser = primaryUser;
         this.relatedUser = relatedUser;
         this.status = status;
     }
-    public UserRelationEntity( UserEntity primaryUser, UserEntity relatedUser, RelationStatus status) {
+    public UserRelationEntity( UserEntity primaryUser, UserEntity relatedUser, RelationStatusEnum status) {
         super();
         this.primaryUser = primaryUser;
         this.relatedUser = relatedUser;
@@ -58,11 +57,11 @@ public class UserRelationEntity extends AbstractEntity {
         this.relatedUser = relatedUser;
     }
 
-    public RelationStatus getStatus() {
+    public RelationStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(RelationStatus status) {
+    public void setStatus(RelationStatusEnum status) {
         this.status = status;
     }
 }

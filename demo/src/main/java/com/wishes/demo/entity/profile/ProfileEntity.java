@@ -3,6 +3,7 @@ package com.wishes.demo.entity.profile;
 import com.wishes.demo.entity.AbstractEntity;
 import com.wishes.demo.entity.account_setting.AccountSettingEntity;
 import com.wishes.demo.entity.user.UserEntity;
+import com.wishes.demo.repository.converter.date.LocalDateAttributeConverter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ public class ProfileEntity extends AbstractEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    @Convert(converter = LocalDateAttributeConverter.class)
     @Column(name = "created_on")
     private LocalDate createdOn;
 

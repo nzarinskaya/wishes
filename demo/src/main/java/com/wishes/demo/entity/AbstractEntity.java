@@ -26,7 +26,7 @@ public class AbstractEntity implements IEntity {
 
     @Override
     public Long getId() {
-        return null;
+        return id;
     }
 
     public void setId(Long id) {

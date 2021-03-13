@@ -3,6 +3,9 @@ package com.wishes.demo.entity.access;
 import com.wishes.demo.entity.AbstractEntity;
 import com.wishes.demo.entity.account_setting.AccountSettingEntity;
 import com.wishes.demo.entity.user.UserEntity;
+import com.wishes.demo.repository.converter.access_status.AccessStatusAttributeConverter;
+import com.wishes.demo.repository.converter.relation_status.RelationStatusAttributeConverter;
+
 import javax.persistence.Id;
 
 
@@ -12,6 +15,7 @@ import javax.persistence.*;
 @Table(name = "access")
 public class AccessEntity extends AbstractEntity {
 
+    @Convert(converter = AccessStatusAttributeConverter.class)
     @Column(name = "status")
     private boolean status;
 
@@ -23,11 +27,10 @@ public class AccessEntity extends AbstractEntity {
    @JoinColumn(name = "user_related_id_fk")
    private UserEntity relatedUserAccess;
 
-   /* @OneToOne(optional = false,cascade = CascadeType.ALL)
+    @OneToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "account_setting_id_fk")
     private AccountSettingEntity account_Setting;
 
-    */
 
     public AccessEntity() {
     }
@@ -69,8 +72,4 @@ public class AccessEntity extends AbstractEntity {
         this.relatedUserAccess = relatedUserAccess;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
 }
