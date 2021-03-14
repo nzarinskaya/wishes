@@ -6,6 +6,7 @@ import com.wishes.demo.entity.addresses.AddressEntity;
 import com.wishes.demo.entity.profile.ProfileEntity;
 import com.wishes.demo.entity.users_relations.UserRelationEntity;
 import com.wishes.demo.entity.wishes.WishesEntity;
+import com.wishes.demo.repository.converter.passowrd.PasswordAttributeConverter;
 import org.hibernate.annotations.Where;
 import java.util.List;
 
@@ -14,15 +15,19 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class UserEntity extends AbstractEntity {
 
+    @NotBlank
     @Column (name = "login")
     private String login;
 
+    @NotBlank
+    @Convert(converter = PasswordAttributeConverter.class)
     @Column (name = "password")
     private String password;
 

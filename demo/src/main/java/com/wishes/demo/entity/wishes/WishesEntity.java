@@ -2,6 +2,7 @@ package com.wishes.demo.entity.wishes;
 
 import com.wishes.demo.entity.AbstractEntity;
 import com.wishes.demo.entity.user.UserEntity;
+import com.wishes.demo.repository.converter.date.LocalDateAttributeConverter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class WishesEntity extends AbstractEntity {
     @Column(name = "description")
     private String description;
 
+    @Convert(converter = LocalDateAttributeConverter.class)
     @Column(name = "created_on")
     private LocalDate createdOn;
 

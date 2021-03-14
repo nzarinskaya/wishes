@@ -28,7 +28,7 @@ public abstract class AbstractRepositoryTest<E extends IEntity, PK extends Seria
     @Test
     void testFind() {
         final E entity = create();
-       Optional<E> entityOptional = repository.findById(PK).entity.getId();
+       Optional<E> entityOptional = repository.findById((PK)entity.getId());
        assertTrue(entityOptional.isPresent(),"Entity not found");
        assertEquals(entity,entityOptional.get());
 

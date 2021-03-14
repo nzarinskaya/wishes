@@ -18,10 +18,9 @@ public class AccountSettingEntity extends AbstractEntity {
    @OneToOne(optional = false,mappedBy = "accountSetting")
    private ProfileEntity profile;
 
-  /*  @OneToOne(optional = false,mappedBy = "account_Setting")
+    @OneToOne(optional = false,mappedBy = "account_Setting")
     private AccessEntity access;
 
-   */
 
     public AccountSettingEntity() {
     }
@@ -33,10 +32,6 @@ public class AccountSettingEntity extends AbstractEntity {
     public AccountSettingEntity (boolean statusDefault) {
         super();
         this.statusDefault = statusDefault;
-    }
-    @Override
-    public Long getId() {
-        return id;
     }
 
     public boolean isStatusDefault() {
@@ -54,4 +49,5 @@ public class AccountSettingEntity extends AbstractEntity {
     public void setProfile(ProfileEntity profile) {
         this.profile = profile;
     }
+
 }
