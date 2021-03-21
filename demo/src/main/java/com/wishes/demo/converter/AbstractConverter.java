@@ -1,50 +1,53 @@
 package com.wishes.demo.converter;
 
-import com.wishes.demo.entity.AbstractEntity;
-import com.wishes.demo.entity.IEntity;
-import com.wishes.demo.model.AbstractModel;
-import com.wishes.demo.model.IModel;
+
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Supplier;
 
-public abstract class AbstractConverter <M extends IModel, E extends IEntity> implements IConverter<M, E>  {
-    protected abstract M convertEntity(E entity, M model);
-    protected abstract E convertModel(M model, E entity);
+public abstract class AbstractConverter<S,T> implements IConverter<S,T> {
 
-    protected abstract M createModel();
-    protected abstract E createEntity();
+    protected Logger logger;
+
+    protected abstract T createTarget();
+    protected abstract S createSource();
 
 
     @Override
-    public E convertToEntity(M model) {
-        E entity = createEntity();
-        ((AbstractEntity) entity).setId(model.getId());
-        return convertModel(model, entity);
+    public Collection convertAll(Iterable<S> sources) {
+        List<T> targets = new ArrayList<>();
+        sources.iterator().forEachRemaining(s -> targets.add(convert(s)));
+        return targets;
     }
 
     @Override
-    public M convertToModel(E entity) {
-        M model = createModel();
-        ((AbstractModel) model).setId(entity.getId());
-        return convertEntity(entity, model);
+    public Collection convertAllBack(Iterable<T> targets) {
+        List<S> sources = new ArrayList<>();
+        targets.iterator().forEachRemaining(t -> sources.add(convertBack(t)));
+        return sources;
     }
 
     @Override
-    public List<E> convertAllToEntities(List<M> models) {
-        List<E> entities = new ArrayList<>();
-        for (M model : models) {
-            entities.add(convertToEntity(model));
-        }
-        return entities;
+    public <C extends Collection<S>> C convertAllBack(Iterable<T> targets, Supplier<C> supplier) {
+        C collection = supplier.get();
+        collection.addAll(convertAllBack(targets));
+        return collection;
     }
 
     @Override
-    public List<M> convertAllToModels(List<E> entities) {
-        List<M> models = new ArrayList<>();
-        for (E entity : entities) {
-            models.add(convertToModel(entity));
-        }
-        return models;
+    public <C extends Collection<T>> C convertAll(Iterable<S> sources, Supplier<C> supplier) {
+        C collection = supplier.get();
+        collection.addAll(convertAll(sources));
+        return collection;
     }
+
+    @Autowired
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
+
 }
