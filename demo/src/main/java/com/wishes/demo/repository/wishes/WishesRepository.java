@@ -14,6 +14,4 @@ public interface WishesRepository extends BaseRepository<WishesEntity, Long> {
 
     @Query(value = "SELECT w FROM WishesEntity w")
     Optional<WishesEntity> findAllWishes(Sort sort);
-
-    WishesEntity findById(long id);
 }

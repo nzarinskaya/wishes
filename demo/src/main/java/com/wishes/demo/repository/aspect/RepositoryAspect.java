@@ -32,7 +32,6 @@ public class RepositoryAspect {
         final long end = System.currentTimeMillis();
         final long timeMethod = end - start;
         logger.info("Time process method " + timeMethod+ " ms");
-        System.out.println("Time process method " + timeMethod);
         return result;
     }
 
