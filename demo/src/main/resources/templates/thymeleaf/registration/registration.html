@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center align-self-center">
         <div class="col-md-8">
-            <form th:action="@{/registration}" method="post" th:object="${registrationForm}">
+            <form th:action="@{/templates/thymeleaf/registration}" method="post" th:object="${registrationForm}">
                 <div class="form-group">
                     <label for="firstNameInput">First name</label>
                     <input th:field="*{firstName}" type="text" class="form-control" id="firstNameInput" placeholder="Enter first name">
@@ -34,7 +34,7 @@
                     <label for="repeatPasswordInput">Repeat password</label>
                     <input th:field="*{repeatPassword}" type="password" class="form-control" id="repeatPasswordInput" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

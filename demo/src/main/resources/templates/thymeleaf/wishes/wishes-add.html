@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add new wishes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="row row justify-content-center align-self-center">
+        <div class="col-md-6">
+            <form method="POST" action="#" th:action="@{/wishes/add}" th:object="${wishes}">
+
+                <div class="form-group">
+                    <label for="descriptionInput">Description</label>
+                    <input th:field="*{description}" type="text" class="form-control" id="descriptionInput" placeholder="Enter description">
+                </div>
+
+                <div class="form-group">
+                    <label for="priceInput">Price</label>
+                    <input th:field="*{price}" type="text" class="form-control" id="priceInput" placeholder="Enter price">
+                </div>
+
+                <div class="form-group">
+                    <label for="urlInput">Url</label>
+                    <input th:field="*{url}" type="text" class="form-control" id="urlInput" placeholder="Enter url">
+                </div>
+
+                <div class="form-group">
+                    <label for="urlImgInput">Url image</label>
+                    <input th:field="*{url}" type="text" class="form-control" id="urlImgInput" placeholder="Enter Url image">
+                </div>
+
+                <div class="form-group">
+                    <label for="imagePathInput">Image path</label>
+                    <input th:field="*{img_path}" type="text" class="form-control" id="imagePathInput" placeholder="Enter Image path">
+                </div>
+                        <button type="submit" class="btn btn-success" >Add</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
