@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import java.util.List;
 import java.util.Optional;
 
 public class WishesServiceImpl extends AbstractService<WishesEntity, WishesModel> implements IWishesService {
@@ -37,7 +38,7 @@ public class WishesServiceImpl extends AbstractService<WishesEntity, WishesModel
 
     @Override
     public Optional<WishesEntity> findAllWishes(Sort sort) {
-        return wishesRepository.findAllWishes(Sort.by(Direction.ASC,"price"));
+        return wishesConverter.convertAll(wishesRepository.findAllWishes(Sort.by(Direction.ASC,"price")));
     }
 
     @Override
