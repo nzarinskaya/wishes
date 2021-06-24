@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,20 +14,21 @@
 
 <ul class="nav justify-content-center">
     <li class="nav-item">
-        <a class="nav-link active" href="/wishes">My wishes</a>
+        <a class="nav-link" href="/wishes">Wishes</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/friends">Friends</a>
+
     </li>
 </ul>
 
 
-<div class="card " style="width: 18rem;">
+<div class="card text-center" style="width: 21.5em;margin:0 auto;">
 
-    <img class="card-img-top" src="/static/img/i.jpg" alt="Card image cap">
+    <img class="card-img-top" src="static/img/i.jpg" alt="Card image cap">
     <div class="card-body text-info">
-        <p class="card-text">First name and last name</p>
-        <a href="#" class="btn btn-outline-info btn-sm">Profile Settings</a>
+        <p class="card-text" th:text="${user.firstName}" th:text="${user.lastName}">firstName and last name</p>
+        <a href="/profileSetting" class="btn btn-outline-info btn-sm">Profile Settings</a>
 
     </div>
 </div>
