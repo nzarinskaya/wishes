@@ -8,6 +8,4 @@ import java.util.Optional;
 
 public interface ProfileRepository extends BaseRepository<ProfileEntity,Long> {
     Optional<ProfileEntity> findByFirstNameAndLastName(String firstName,String lastName);
-    ProfileEntity findById(long id);
-
-}
+    }

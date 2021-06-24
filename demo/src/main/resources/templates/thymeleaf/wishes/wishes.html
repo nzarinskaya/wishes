@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wishes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<ul class="List">
+    <li th:each="wishes : ${allWishes}" th:text="${wishes.description}">
+
+<div class="card text-center" style="width: 15.5em;margin:0 auto;">
+    <img th:src="${wishes.url_img}"/>
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"><b><td th:text="${wishes.description}">Description</td></b></p>
+        <b><td th:text="${wishes.price}">Price</td></p></b>
+        <b><td th:text="${wishes.url}">Url</td></p></b>
+        <a href="/wishes/delete" class="btn btn-warning">Delete</a>
+    </div>
+</div>
+    </li>
+</ul>
+<div class="text-center" >
+<a href="/wishes/wishes-add"><button class="btn btn-success">ADD</button></a>
+</div>
+</body>
+</html>

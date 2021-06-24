@@ -12,8 +12,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @NoRepositoryBean
-public class BaseRepositoryImpl<E extends IEntity,ID extends Serializable>
-        extends SimpleJpaRepository<E,ID> implements BaseRepository<E,ID> {
+public class BaseRepositoryImpl<E extends IEntity,PK extends Serializable>
+        extends SimpleJpaRepository<E,PK> implements BaseRepository<E,PK> {
     private EntityManager entityManager;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseRepositoryImpl.class);

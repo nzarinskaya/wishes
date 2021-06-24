@@ -1,8 +1,10 @@
 package com.wishes.demo.model.auth;
 
+import com.wishes.demo.model.AbstractModel;
+
 import javax.validation.constraints.NotBlank;
 
-public class RegistrationModel {
+public class RegistrationModel extends AbstractModel {
 
     @NotBlank
     private String login;

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Main</title>
+</head>
+<body>
+
+<form th:action="@{/doLogin}" method="post">
+    <div th:if="${errorMessage != null}">
+        Failed to login.
+        <p th:text="${errorMessage}">Reason</p>
+    </div>    <div class ="container p-2 my-3" >
+        <div class =" form-group">
+        <label for="InputLogin">Login</label>
+        <input type="text" class="form-control " id="InputLogin" placeholder="Enter login">
+
+        </div>
+    </div>
+    <div class ="container p-2 my-3" >
+        <div class =" form-group">
+        <label for="InputPassword">Password</label>
+        <input type="text" class="form-control" id="InputPassword" placeholder="Password">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary" class="text-center">Submit</button>
+    <p class="row justify-content-center align-self-center p-2 my-3"><a href="/registration">Registration</a></p>
+
+</form>
+
+<div th:replace="base/base :: scripts" />
+
+
+</body>
+</html>

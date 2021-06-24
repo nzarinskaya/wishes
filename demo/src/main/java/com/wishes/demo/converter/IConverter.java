@@ -1,14 +1,18 @@
 package com.wishes.demo.converter;
 
+import java.util.Collection;
 import java.util.List;
-import com.wishes.demo.entity.IEntity;
-import com.wishes.demo.model.IModel;
+import java.util.function.Supplier;
 
-public interface IConverter<M extends IModel, E extends IEntity> {
+public interface IConverter<S,T> {
 
-    M convertToModel(E entity);
-    E convertToEntity(M model);
-    List<M> convertAllToModels(List<E> entities);
-    List<E> convertAllToEntities(List<M> models);
+    T convert(S source);
+    S convertBack(T target);
+
+    Collection<T> convertAll(Iterable<S> sources);
+    Collection<S> convertAllBack(Iterable<T> targets);
+
+    <C extends Collection<T>> C convertAll(Iterable<S> sources, Supplier<C> supplier);
+    <C extends Collection<S>> C convertAllBack(Iterable<T> targets, Supplier<C> supplier);
 
 }
